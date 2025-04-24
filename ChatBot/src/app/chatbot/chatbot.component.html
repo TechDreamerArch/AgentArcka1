@@ -1,0 +1,55 @@
+
+
+<div class="container">
+  <!-- Background image container -->
+  <div class="background-container"></div>
+  
+  <!-- Prachi avatar beside the chatbot -->
+  
+  
+  <div class="chatbox">
+    <div class="chatbox__support" [ngClass]="{'chatbox--active': isOpen}">
+      <div class="chatbox__header">
+        <div class="chatbox__image--header">
+          <img src="../../assets/images/Prachi.jpg" alt="Prachi" class="avatar-image">
+        </div>
+        <div class="chatbox__content--header">
+          <h4 class="chatbox__heading--header">Chat Support</h4>
+          <p class="chatbox__description--header">Hi. My name is ArcKa. How can I help you?</p>
+        </div>
+        <button class="logout-button" (click)="logout()">Logout</button>
+      </div>
+
+      <div class="chatbox__messages" #chatMessages>
+        <div>
+          <div *ngFor="let message of messages" class="messages__item"
+               [ngClass]="{'messages__item--visitor': message.name === 'ArcKa', 
+                          'messages__item--operator': message.name === 'User'}"
+               [innerHTML]="sanitizeHtml(message.message)">
+          </div>
+          <div *ngIf="isLoading" class="messages__item messages__item--visitor messages__item--loading">
+            <span class="loading-dot"></span>
+            <span class="loading-dot"></span>
+            <span class="loading-dot"></span>
+          </div>
+        </div>
+      </div>
+      <div class="chatbox__footer">
+        <input type="text"
+               placeholder="Ask a question about your data..."
+               [(ngModel)]="inputMessage"
+               (keyup)="handleKeyUp($event)"
+               #messageInput>
+        <button class="chatbox__send--footer send__button" (click)="sendMessage()">Send</button>
+      </div>
+    </div>
+    <div class="chatbox__button">
+      <button class="toggle-button" (click)="toggleChatbox()">
+        <div class="toggle-button-content">
+          <img src="../../assets/images/Prachi.jpg" alt="Prachi" class="chatbot-toggle-image">
+          <span class="ask-prachi-text">Ask ArcKa</span>
+        </div>
+      </button>
+    </div>
+  </div>
+</div>

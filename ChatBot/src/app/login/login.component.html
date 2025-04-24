@@ -1,0 +1,33 @@
+<!-- login.component.html -->
+<div class="login-container">
+    <div class="login-card">
+      <h2>Kalpita Database Query Assistant</h2>
+      <div class="login-form">
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input 
+            type="email" 
+            id="email" 
+            [(ngModel)]="email" 
+            name="email" 
+            class="form-control" 
+            placeholder="Enter your email"
+            required
+          >
+        </div>
+        
+        <div class="error-message" *ngIf="errorMessage">
+          {{ errorMessage }}
+        </div>
+        
+        <button 
+          (click)="login()" 
+          class="login-button" 
+          [disabled]="loading"
+        >
+          <span *ngIf="loading">Logging in...</span>
+          <span *ngIf="!loading">Login</span>
+        </button>
+      </div>
+    </div>
+  </div>
